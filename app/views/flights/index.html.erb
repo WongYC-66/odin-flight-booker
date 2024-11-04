@@ -1,0 +1,26 @@
+<%# Search Form %>
+<%= form_with url: "/flights/", method: :get do |form| %>
+  <div>
+    <%= form.label :departure_airport %>
+    <%= select_tag(:departure_code, options_for_select(@airports)) %>
+  </div>
+
+  <div>
+    <%= form.label :arrival_airport %>
+    <%= select_tag(:arrival_code, options_for_select(@airports)) %>
+  </div>
+
+  <div>
+    <%= form.label :"Date of Departure" %>
+    <%= select_tag(:date, options_for_select(@flight_dates)) %>
+  </div>
+
+  <div>
+    <%= form.label :"Number of Passengers" %>
+    <%= select_tag(:num_tickets, options_for_select(@num_tickets)) %>
+  </div>
+
+  <%= form.submit "Search", name: nil %>
+<% end %>
+
+<%# Search Result %>

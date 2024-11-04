@@ -7,3 +7,31 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+#
+puts "seeding starting ..."
+
+
+puts "seeding airport model"
+airport_list = [ "LAX", "PEK", "HKG", "SIN", "DXB", "MIA" ]
+airport_list.each do |airport_name|
+  Airport.find_or_create_by!(name: airport_name)
+end
+
+puts "seeding flight model"
+airport_list.each do |a1|
+  airport_list.each do |a2|
+    next if a1 == a2
+    (1...5).each do |n|
+      puts "#{a1}-#{a2}-#{n}"
+      flight = Flight.new
+      flight.departure_airport = Airport.find_by(name: a1)
+      flight.arrival_airport = Airport.find_by(name: a2)
+
+      flight.start = Time.now + 60 * 60 * 24 * n
+      flight.duration = 0.5 + n
+      flight.save
+    end
+  end
+end
+
+puts "seeding completed"
