@@ -8,10 +8,6 @@ class BookingsController < ApplicationController
   end
 
   def create
-    puts ""
-    puts params
-    puts ""
-
     flight = Flight.find(params[:booking][:flight_id])
     @booking = flight.bookings.new()
 
