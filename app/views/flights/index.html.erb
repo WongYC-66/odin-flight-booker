@@ -34,13 +34,13 @@
       <div>
         <%#= flight.id %>
         <%= flight.departure_airport.name %>  ->
-        <%= flight.arrival_airport.name %>
+        <%= flight.arrival_airport.name %> , 
         <%= flight.start %>
-        <%= flight.duration %>
+        - <%= flight.duration %> hours
         <%= form.radio_button :flight_id, flight.id %>
       </div>
       <br>
     <% end %>
-    <%= form.submit "Submit", name: nil %>
+    <%= form.submit "Booking", name: nil %>
   <% end %>
 <% end %>

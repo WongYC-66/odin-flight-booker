@@ -16,7 +16,9 @@ class BookingsController < ApplicationController
     @booking = flight.bookings.new()
 
     params[:booking][:passengers_attributes].each do |i, passenger|
-      created_passenger = Passenger.find_or_create_by(email: passenger[:email])
+      created_passenger = Passenger.find_or_create_by(email: passenger[:email]) do |new_p|
+        new_p.name = passenger[:name]
+      end
       @booking.passengers << created_passenger
     end
 
