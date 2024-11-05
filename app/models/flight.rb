@@ -6,5 +6,5 @@ class Flight < ApplicationRecord
   has_many :passengers, through: :bookings
 
   # accepts_nested_attributes_for :bookings, :passengers, :departure_airport, :arrival_airport
-  accepts_nested_attributes_for :bookings, :departure_airport, :arrival_airport
+  accepts_nested_attributes_for :bookings, :passengers, :departure_airport, :arrival_airport
 end

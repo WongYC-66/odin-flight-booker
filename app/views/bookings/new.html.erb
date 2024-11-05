@@ -12,18 +12,19 @@
 
 <h3>Please fill in passenger info (<%= @ticket_count %>):</h3>
 <%= form_with model: @booking do |f| %>
-    <% @ticket_count.times do |n| %>
-        <div>
-        <h4>Passenger #<%= n + 1%></h4>
-        <%= f.fields_for @booking.flight.passengers.build do |sub_form| %>
-            <%= sub_form.label :name %>
-            <%= sub_form.text_field :name %>
-            <br>
-            <%= sub_form.label :email %>
-            <%= sub_form.text_field :email %>
-        <% end %>
-        </div>
+    <%# @ticket_count.times do |n| %>
+    <%= f.fields_for :passengers do |sub_form, n| %>
+    <div>
+        <h4>Passengers #<%= sub_form.options[:child_index] + 1 %></h4>
+        <%= sub_form.label :name %>
+        <%= sub_form.text_field :name %>
+        <br>
+        <%= sub_form.label :email %>
+        <%= sub_form.text_field :email %>
+    </div>
+    <br>
     <% end %>
+    <%# end %>
 
     <br>
     <%= f.submit "Submit" %>

@@ -4,9 +4,7 @@ class BookingsController < ApplicationController
     @ticket_count = Integer(params[:ticket_count])
 
     @booking = @flight.bookings.new
-    # @passengers = (1..@ticket_count).map { |n| Passenger.build }
-    @ticket_count.times { @booking.flight.passengers.build }
-    # puts @flight.passengers
+    @ticket_count.times { @booking.passengers.build }
   end
 
   def create
