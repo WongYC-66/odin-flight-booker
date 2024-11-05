@@ -27,20 +27,25 @@
 <%# Search Result %>
 <% if @flights %>
   <h3> Search Result </h3>
+  <% if @flights.any? %>
 
-  <%= form_with url: "/bookings/new/", method: :get do |form| %>
-    <%= form.hidden_field :ticket_count, value: @ticket_count %>
-    <% @flights.each do |flight| %>
-      <div>
-        <%#= flight.id %>
-        <%= flight.departure_airport.name %>  ->
-        <%= flight.arrival_airport.name %> , 
-        <%= flight.start %>
-        - <%= flight.duration %> hours
-        <%= form.radio_button :flight_id, flight.id %>
-      </div>
-      <br>
+    <%= form_with url: "/bookings/new/", method: :get do |form| %>
+      <%= form.hidden_field :ticket_count, value: @ticket_count %>
+
+      <% @flights.each do |flight| %>
+        <div>
+          <%#= flight.id %>
+          <%= flight.departure_airport.name %>  ->
+          <%= flight.arrival_airport.name %> , 
+          <%= flight.start %>
+          - <%= flight.duration %> hours
+          <%= form.radio_button :flight_id, flight.id %>
+        </div>
+        <br>
+      <% end %>
+
+      <%= form.submit "Booking", name: nil %>
     <% end %>
-    <%= form.submit "Booking", name: nil %>
+
   <% end %>
 <% end %>

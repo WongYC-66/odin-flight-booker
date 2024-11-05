@@ -9,9 +9,11 @@ class FlightsController < ApplicationController
       puts params if params
       departure_airport = Airport.find_by(name: params[:departure_code])
       arrival_airport = Airport.find_by(name: params[:arrival_code])
+      q_date = Date.strptime(params[:date], "%Y%m%d")
       @flights = Flight
         .where(departure_airport_id: departure_airport.id)
         .where(arrival_airport_id: arrival_airport.id)
+        .where("DATE(start) == ?", q_date)
         .includes(:departure_airport, :arrival_airport)
       @ticket_count = params[:num_tickets]
     end
