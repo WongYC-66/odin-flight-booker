@@ -24,21 +24,23 @@
 <% end %>
 
 
-<h3> Search Result </h3>
-
 <%# Search Result %>
-<%= form_with url: "/booking/new/", method: :post do |form| %>
-  <%= form.hidden_field :ticket_count, value: @ticket_count %>
-  <% @flights.each do |flight| %>
-    <div>
-      <%#= flight.id %>
-      <%= flight.departure_airport.name %>  ->
-      <%= flight.arrival_airport.name %>
-      <%= flight.start %>
-      <%= flight.duration %>
-      <%= form.radio_button :flight_id, flight.id %>
-    </div>
-    <br>
+<% if @flights %>
+  <h3> Search Result </h3>
+
+  <%= form_with url: "/bookings/new/", method: :get do |form| %>
+    <%= form.hidden_field :ticket_count, value: @ticket_count %>
+    <% @flights.each do |flight| %>
+      <div>
+        <%#= flight.id %>
+        <%= flight.departure_airport.name %>  ->
+        <%= flight.arrival_airport.name %>
+        <%= flight.start %>
+        <%= flight.duration %>
+        <%= form.radio_button :flight_id, flight.id %>
+      </div>
+      <br>
+    <% end %>
+    <%= form.submit "Submit", name: nil %>
   <% end %>
-  <%= form.submit "Submit", name: nil %>
 <% end %>

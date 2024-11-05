@@ -22,7 +22,6 @@ airport_list.each do |a1|
   airport_list.each do |a2|
     next if a1 == a2
     (1...5).each do |n|
-      puts "#{a1}-#{a2}-#{n}"
       flight = Flight.new
       flight.departure_airport = Airport.find_by(name: a1)
       flight.arrival_airport = Airport.find_by(name: a2)
@@ -33,5 +32,12 @@ airport_list.each do |a1|
     end
   end
 end
+
+puts "seeding passenger"
+passenger_list = [ "Amy", "Bob", "Carlos", "Dickson", "Ellis", "Falcon", "Gary" ]
+passenger_list.each do |name|
+  Passenger.find_or_create_by!(name: name, email: "#{name}@example.com")
+end
+
 
 puts "seeding completed"

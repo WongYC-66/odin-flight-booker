@@ -1,0 +1,30 @@
+<h2>New Booking</h2>
+
+<div>
+    <%= @flight.departure_airport.name %> ->
+    <%= @flight.arrival_airport.name %>
+
+    <p>Duration : <%= @flight.duration %> hours </p>
+    <p>Departure Time : <%= @flight.start %></p>
+</div>
+
+<%# Booking Form %>
+
+<h3>Please fill in passenger info (<%= @ticket_count %>):</h3>
+<%= form_with model: @booking do |f| %>
+    <% @ticket_count.times do |n| %>
+        <div>
+        <h4>Passenger #<%= n + 1%></h4>
+        <%= f.fields_for @booking.flight.passengers.build do |sub_form| %>
+            <%= sub_form.label :name %>
+            <%= sub_form.text_field :name %>
+            <br>
+            <%= sub_form.label :email %>
+            <%= sub_form.text_field :email %>
+        <% end %>
+        </div>
+    <% end %>
+
+    <br>
+    <%= f.submit "Submit" %>
+<% end %>
