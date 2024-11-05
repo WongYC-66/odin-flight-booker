@@ -11,8 +11,23 @@ class BookingsController < ApplicationController
     puts ""
     puts params
     puts ""
+
+    flight = Flight.find(params[:booking][:flight_id])
+    @booking = flight.bookings.new()
+
+    params[:booking][:passengers_attributes].each do |i, passenger|
+      created_passenger = Passenger.find_or_create_by(email: passenger[:email])
+      @booking.passengers << created_passenger
+    end
+
+    if @booking.save
+      redirect_to @booking
+    else
+      render new
+    end
   end
 
   def show
+    @booking = Booking.find(params[:id])
   end
 end
