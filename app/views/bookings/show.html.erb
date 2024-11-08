@@ -19,7 +19,7 @@
 <hr>
 <h3>Passengers Info:</h3>
 <% @booking.passengers.each_with_index do |passenger, i| %>
-    <h3>Passenger #<%= i %></h3>
+    <h3>Passenger #<%= i + 1%></h3>
     <p><%= passenger.name %></p>
     <p><%= passenger.email %></p>
 <% end %>
