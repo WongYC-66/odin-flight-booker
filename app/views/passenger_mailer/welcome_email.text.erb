@@ -1,0 +1,23 @@
+
+your username is: <%= @user.name %>
+
+################################################################
+Flight detail
+
+<%= @flight.departure_airport.name %> ->  <%= @flight.arrival_airport.name %>
+
+Duration : <%= @flight.duration %> hours 
+Departure Time : <%= @flight.start %>
+
+
+################################################################
+Passengers Info:
+
+<% @all_passengers.each_with_index do |passenger, i| %>
+    Passenger #<%= i + 1%>
+    <%= passenger.name %>
+    <%= passenger.email %>
+<% end %>
+
+################################################################
+Thanks for booking and have a great day!

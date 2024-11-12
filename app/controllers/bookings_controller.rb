@@ -19,6 +19,9 @@ class BookingsController < ApplicationController
     end
 
     if @booking.save
+      @booking.passengers.each do |user|
+        PassengerMailer.with(user: user, flight: flight, all_passengers: @booking.passengers).welcome_email.deliver_now
+      end
       redirect_to @booking
     else
       render new

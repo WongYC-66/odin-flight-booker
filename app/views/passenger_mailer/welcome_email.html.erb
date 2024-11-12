@@ -1,0 +1,25 @@
+<p>
+  your username is: <%= @user.name %>.<br>
+</p>
+
+<h2>Flight detail<h2>
+<div>
+  <%= @flight.departure_airport.name %> ->
+  <%= @flight.arrival_airport.name %>
+
+  <p>Duration : <%= @flight.duration %> hours </p>
+  <p>Departure Time : <%= @flight.start %></p>
+</div>
+
+<hr>
+
+<h3>Passengers Info:</h3>
+<% @all_passengers.each_with_index do |passenger, i| %>
+    <h3>Passenger #<%= i + 1%></h3>
+    <p><%= passenger.name %></p>
+    <p><%= passenger.email %></p>
+<% end %>
+
+<hr>
+
+<p>Thanks for booking and have a great day!</p>
