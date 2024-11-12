@@ -83,17 +83,18 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    # https://www.youtube.com/watch?v=r1yh0u9Buhs&ab_channel=Kinsta
-    address:              "smtp.office365.com",
-    port:                 587,
-    domain:               "example.com",
-    user_name:            ENV["OUTLOOK_USERNAME"],
-    password:             ENV["OUTLOOK_PASSWORD"],
-    authentication:       "plain",
-    enable_starttls_auto: true,
-    ssl:                  true,
-    tls:                  true
-  }
+  #  Outlook mailer (failed)
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   # https://www.youtube.com/watch?v=r1yh0u9Buhs&ab_channel=Kinsta
+  #   address:              "smtp.office365.com",
+  #   port:                 587,
+  #   domain:               "example.com",
+  #   user_name:            ENV["OUTLOOK_USERNAME"],
+  #   password:             ENV["OUTLOOK_PASSWORD"],
+  #   authentication:       "plain",
+  #   enable_starttls_auto: true,
+  #   ssl:                  true,
+  #   tls:                  true
+  # }
 end
